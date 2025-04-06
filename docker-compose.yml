@@ -1,10 +1,11 @@
 services:
-  web:
-    image: nginx:alpine
-    container_name: fetchpriority_test
+
+  apprendre-poesie:
+    image: caddy:latest
     ports:
-      - "8080:8000"
+      - '${PORT}:80'
+    restart: always
     volumes:
-      - ./html:/usr/share/nginx/html:ro
-    restart: unless-stopped
+      - './Caddyfile:/etc/Caddyfile'
+      - './html/:/usr/share/caddy/'
 
