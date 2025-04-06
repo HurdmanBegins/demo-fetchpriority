@@ -3,18 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Fetch Priority Test</title>
+    <style>
+        body { margin: 0; padding: 2rem; font-family: sans-serif; }
+        canvas { margin-top: 2rem; }
+    </style>
 </head>
 <body>
+    <div id="particles-js" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></div>
+
     <h1>Comparatif fetchpriority</h1>
+
     <p>Image principale (fetchpriority="high") :</p>
-    <img src="high.png" fetchpriority="high" alt="Hero Image" >
+    <img src="high.png" fetchpriority="high" alt="Hero Image" width="600" height="400">
 
     <p>Image secondaire sans fetchpriority :</p>
-    <img src="nofetch.png" alt="Secondary Image">
+    <img src="nofetch.png" alt="Secondary Image" width="600" height="400">
 
     <p>Image basse priorité (fetchpriority="low") :</p>
-    <img src="low.png fetchpriority="low" alt="Background Image">
+    <img src="low.png" fetchpriority="low" alt="Background Image" width="600" height="400">
 
+    <canvas id="myChart" width="600" height="300"></canvas>
+
+    <div style="height: 2000px;"></div>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" fetchpriority="low"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        anime({
+          targets: 'h1',
+          scale: [0.9, 1.1],
+          duration: 1000,
+          loop: true,
+          direction: 'alternate',
+          easing: 'easeInOutSine'
+        });
+      });
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" fetchpriority="low"></script>
+    <script>
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Image 1', 'Image 2', 'Image 3'],
+          datasets: [{
+            label: 'Poids (Ko)',
+            data: [432, 430, 429],
+            backgroundColor: ['#e74c3c', '#2ecc71', '#3498db']
+          }]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            legend: { display: false }
+          }
+        }
+      });
+    </script>
+
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js" fetchpriority="low"></script>
+    <script>
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 60 },
+          size: { value: 3 },
+          color: { value: "#999999" },
+          line_linked: { enable: true, distance: 150, color: "#999999", opacity: 0.4, width: 1 },
+          move: { enable: true, speed: 1 }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "repulse" }
+          }
+        }
+      });
+    </script>
 </body>
 </html>
 
