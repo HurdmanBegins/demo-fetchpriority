@@ -1,3 +1,20 @@
-<html>
-<h1>Hello World !</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Priority Test</title>
+</head>
+<body>
+    <h1>Comparatif fetchpriority</h1>
+    <p>Image principale (fetchpriority="high") :</p>
+    <img src="image2.png" fetchpriority="high" alt="Hero Image" >
+
+    <p>Image secondaire sans fetchpriority :</p>
+    <img src="image3.png" alt="Secondary Image">
+
+    <p>Image basse priorité (fetchpriority="low") :</p>
+    <img src="image4.png fetchpriority="low" alt="Background Image">
+
+</body>
 </html>
+
